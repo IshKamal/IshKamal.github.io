@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fraud Detection in Financial Transactions Using Apache Spark | Ishmam Kamal</title>
+<meta name="description" content="Distributed fraud-detection pipeline built on Apache Spark, analyzing 590,540 transactions and comparing logistic regression and random forest models, with a strongest ROC-AUC of 0.866.">
+
+<link rel="canonical" href="https://ishkamal.github.io/ishmamkamal.github.io/projects/fraud-detection.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fraud Detection in Financial Transactions Using Apache Spark | Ishmam Kamal">
+<meta property="og:description" content="590,540 transactions analyzed with Apache Spark and Python; strongest model achieved 0.866 ROC-AUC.">
+<meta property="og:url" content="https://ishkamal.github.io/ishmamkamal.github.io/projects/fraud-detection.html">
+<meta property="og:image" content="https://ishkamal.github.io/ishmamkamal.github.io/assets/images/social/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../assets/images/social/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html">Ishmam <span>Kamal</span></a>
+    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+      <span aria-hidden="true">☰</span> Menu
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul class="primary-nav__links">
+        <li><a href="../index.html#professional-work">Professional Work</a></li>
+        <li><a href="../index.html#graduate-projects" aria-current="page">Graduate Projects</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cta-row">
+      <a class="btn btn--primary btn--small" href="../assets/docs/Ishmam-Kamal-Resume.pdf" download>Download Résumé</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#graduate-projects">Graduate Projects</a> / Fraud Detection</p>
+      <p class="eyebrow">Graduate Project · Apache Spark on AWS</p>
+      <h1>Fraud Detection in Financial Transactions Using Apache Spark</h1>
+      <p class="hero__lede">Analyzed and prepared 590,540 transactions using Apache Spark and Python and compared predictive models, with the strongest model achieving a 0.866 ROC-AUC.</p>
+
+      <ul class="metric-pills">
+        <li class="metric-pill">590,540 transactions</li>
+        <li class="metric-pill">3.5% fraud rate</li>
+        <li class="metric-pill">0.866 ROC-AUC</li>
+      </ul>
+
+      <div class="project-hero__tools">
+        <p><strong>Tools used:</strong></p>
+        <ul class="tool-tags">
+          <li class="tool-tag">Apache Spark (PySpark, Spark MLlib)</li>
+          <li class="tool-tag">Python</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Context &amp; analytical question</h2>
+      <p>Financial institutions process millions of transactions daily, and fraud is difficult to catch with traditional, single-machine processing methods at that scale. This academic evaluation project asks: how can Apache Spark improve the speed, scalability, and effectiveness of fraud detection in large-scale financial transaction data?</p>
+      <p>This was an independent academic project built around a public benchmark dataset, not a client engagement. No employer, healthcare, or proprietary data was used; the dataset is anonymized transaction data released publicly for research.</p>
+    </div>
+  </section>
+
+  <!-- DATA -->
+  <section class="case-section section--alt">
+    <div class="container container--narrow">
+      <h2>Data</h2>
+      <p>The project uses the <strong>IEEE-CIS Fraud Detection dataset</strong>, a public Kaggle competition dataset built from anonymized transaction data originally provided by Vesta Corporation.</p>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption>Dataset profile</caption>
+          <thead>
+            <tr><th scope="col">Metric</th><th scope="col" class="num">Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Transaction records</td><td class="num">590,540</td></tr>
+            <tr><td>Combined features (transaction + identity)</td><td class="num">434</td></tr>
+            <tr><td>Confirmed fraud cases</td><td class="num">20,663</td></tr>
+            <tr><td>Fraud rate</td><td class="num">3.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The dataset is highly imbalanced: fraudulent transactions make up only 3.5% of records, which shaped every downstream modeling decision, from stratified splitting to class weighting.</p>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="case-section">
+    <div class="container">
+      <h2>Approach</h2>
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/fraud-detection/project-workflow.jpg" data-lightbox>
+          <img src="../assets/images/projects/fraud-detection/project-workflow.jpg" width="1100" height="734" loading="lazy" alt="Project workflow diagram: load and merge the IEEE-CIS transaction and identity datasets in PySpark, clean and engineer features with Spark ML, split 80/20 preserving the 3.5% fraud rate, train three models (baseline logistic regression, logistic regression with Chi-square features, and random forest), then evaluate with precision, recall, F1-score, and ROC-AUC.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Figure 1. Project workflow</span>
+          <p>Transaction and identity tables were loaded into PySpark DataFrames and joined on transaction ID, cleaned (median imputation for numeric fields, "unknown" for categorical fields), and encoded with StringIndexer, OneHotEncoder, and VectorAssembler before an 80/20 stratified train/test split that preserved the ~3.5% fraud rate in both sets.</p>
+        </figcaption>
+      </figure>
+      <p>Three models were trained and compared, each with class weighting to address the imbalance:</p>
+      <ol class="workflow-steps">
+        <li>Logistic Regression: baseline using domain-selected features</li>
+        <li>Logistic Regression: Chi-square statistical feature selection</li>
+        <li>Random Forest: ensemble of decision trees capturing nonlinear relationships</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- VISUAL ANALYSIS -->
+  <section class="case-section section--alt">
+    <div class="container">
+      <h2>Visual analysis</h2>
+      <p>Charts below are generated directly from the project's own Spark analysis.</p>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/fraud-detection/class-imbalance.jpg" data-lightbox>
+          <img src="../assets/images/projects/fraud-detection/class-imbalance.jpg" width="870" height="578" loading="lazy" alt="Bar chart: 96.5% of the 590,540 transactions are legitimate and 3.5% are fraudulent.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Class imbalance in the transaction data</span>
+          <p>Fraudulent transactions represent only 3.5% of the 590,540 total, confirming a highly imbalanced classification problem that required stratified sampling and class weighting rather than a naive train/test split.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/fraud-detection/spark-runtime-by-operation.png" data-lightbox>
+          <img src="../assets/images/projects/fraud-detection/spark-runtime-by-operation.png" width="1000" height="514" loading="lazy" alt="Bar chart of runtime in seconds for each Spark workflow operation. Random Forest training took roughly 280 seconds, far longer than data loading, merging, or the logistic regression models.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Figure 2. Runtime by Spark operation</span>
+          <p>Data loading, merging, and both logistic regression models each completed in well under a minute. Random Forest training was the clear runtime bottleneck at roughly 280 seconds, while prediction stayed fast across all models.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/fraud-detection/random-forest-scalability.png" data-lightbox>
+          <img src="../assets/images/projects/fraud-detection/random-forest-scalability.png" width="1000" height="604" loading="lazy" alt="Line chart showing Random Forest training time scaling roughly linearly from about 100 seconds at 25% of the training data to about 280 seconds at 100% of the training data.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Figure 3. Random Forest training time by dataset size</span>
+          <p>Training time scaled roughly linearly with dataset size, from about 100 seconds at 25% of the training data to about 280 seconds at the full training set, indicating Spark handled growing data volume predictably rather than degrading disproportionately.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Results</h2>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption>Model performance comparison (test set)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col" class="num">Precision</th>
+              <th scope="col" class="num">Recall</th>
+              <th scope="col" class="num">F1-Score</th>
+              <th scope="col" class="num">ROC-AUC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Logistic Regression (domain features)</td>
+              <td class="num">0.081</td><td class="num">0.628</td><td class="num">0.144</td><td class="num">0.744</td>
+            </tr>
+            <tr>
+              <td>Logistic Regression (Chi-square features)</td>
+              <td class="num">0.070</td><td class="num">0.588</td><td class="num">0.125</td><td class="num">0.716</td>
+            </tr>
+            <tr class="is-best">
+              <td>★ Random Forest</td>
+              <td class="num">0.174</td><td class="num">0.653</td><td class="num">0.274</td><td class="num">0.866</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="result-highlight">
+        <p><strong>Random Forest was the strongest model, reaching a 0.866 ROC-AUC</strong>, the best balance of precision and recall among the three approaches tested, on held-out test data.</p>
+        <p>These are academic model-evaluation results on a benchmark dataset, not a production system. The model was not deployed, and no claim is made about real-world fraud prevented or financial losses avoided.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS DEMONSTRATED -->
+  <section class="case-section section--alt">
+    <div class="container container--narrow">
+      <h2>Skills demonstrated</h2>
+      <ul class="skill-tags" style="display:flex;flex-wrap:wrap;">
+        <li class="skill-tag">Apache Spark (PySpark, Spark MLlib)</li>
+        <li class="skill-tag">Distributed / scalable data processing</li>
+        <li class="skill-tag">Feature engineering (StringIndexer, OneHotEncoder, VectorAssembler)</li>
+        <li class="skill-tag">Classification modeling (logistic regression, random forest)</li>
+        <li class="skill-tag">Imbalanced-class handling</li>
+        <li class="skill-tag">Model evaluation (precision, recall, F1, ROC-AUC)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LIMITATIONS -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Limitations &amp; next steps</h2>
+      <ul>
+        <li>Precision remained low (0.174) even for the best model, meaning most flagged transactions were still false positives: a direct consequence of the 3.5% fraud rate and a limitation worth stating plainly alongside the strong ROC-AUC.</li>
+        <li>Evaluation was performed on a single public benchmark dataset; results are not verified to generalize to other transaction populations.</li>
+        <li>The project's write-up discusses Amazon EMR as a possible path to production-scale deployment. This was a proposed direction only; the model was not deployed, and no production system exists.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="project-nav container" aria-label="Project navigation">
+    <a class="btn btn--secondary" href="ai-news-sentiment.html">← Previous case study: AI News Sentiment</a>
+    <a class="btn btn--secondary" href="../index.html#graduate-projects">Back to Graduate Projects →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span data-current-year>2026</span> Ishmam Kamal</p>
+    <ul class="footer-links">
+      <li><a href="mailto:ishkamal002@gmail.com">ishkamal002@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/ishmamkamal" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/IshKamal/ishmamkamal.github.io" target="_blank" rel="noopener">GitHub <span class="visually-hidden">(opens in a new tab)</span></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

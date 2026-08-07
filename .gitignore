@@ -1,0 +1,24 @@
+# Raw, read-only reference material: never publish to the website repo.
+# See PORTFOLIO_SPEC.md and OPEN_ITEMS.md for why (working notebooks, decks,
+# spreadsheets, raw exports; curated web-ready copies already live in assets/).
+/Sources/
+/Resumes/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Local tooling
+.claude/
+node_modules/
+*.log

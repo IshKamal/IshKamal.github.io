@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI News Sentiment &amp; Tech Stock Performance | Ishmam Kamal</title>
+<meta name="description" content="Graduate capstone analyzing 64,000+ financial news articles across 16 technology stocks with FinBERT sentiment scoring and regression modeling of next-day stock returns.">
+
+<link rel="canonical" href="https://ishkamal.github.io/ishmamkamal.github.io/projects/ai-news-sentiment.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI News Sentiment &amp; Tech Stock Performance | Ishmam Kamal">
+<meta property="og:description" content="News sentiment analysis and stock-return modeling using FinBERT, Python, and scikit-learn.">
+<meta property="og:url" content="https://ishkamal.github.io/ishmamkamal.github.io/projects/ai-news-sentiment.html">
+<meta property="og:image" content="https://ishkamal.github.io/ishmamkamal.github.io/assets/images/social/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../assets/images/social/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html">Ishmam <span>Kamal</span></a>
+    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+      <span aria-hidden="true">☰</span> Menu
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul class="primary-nav__links">
+        <li><a href="../index.html#professional-work">Professional Work</a></li>
+        <li><a href="../index.html#graduate-projects" aria-current="page">Graduate Projects</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cta-row">
+      <a class="btn btn--primary btn--small" href="../assets/docs/Ishmam-Kamal-Resume.pdf" download>Download Résumé</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#graduate-projects">Graduate Projects</a> / AI News Sentiment</p>
+      <p class="eyebrow">Graduate Capstone · California State Polytechnic University, Pomona</p>
+      <h1>AI News Sentiment and Tech Stock Performance</h1>
+      <p class="hero__lede">Analyzed more than 64,000 financial news articles across 16 technology stocks and compared news-based and price-only models; the strongest approach reduced average prediction error by 31%.</p>
+
+      <ul class="metric-pills">
+        <li class="metric-pill">64,000+ news articles</li>
+        <li class="metric-pill">16 technology stocks</li>
+        <li class="metric-pill">31% lower prediction error</li>
+      </ul>
+
+      <div class="project-hero__tools">
+        <p><strong>Tools used:</strong></p>
+        <ul class="tool-tags">
+          <li class="tool-tag">Python</li>
+          <li class="tool-tag">pandas</li>
+          <li class="tool-tag">scikit-learn</li>
+          <li class="tool-tag">Hugging Face Transformers (FinBERT)</li>
+          <li class="tool-tag">Matplotlib</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Context &amp; analytical question</h2>
+      <p>Financial markets are widely considered difficult to predict because they are dynamic and information-efficient. This graduate capstone project asks a focused question: does incorporating financial news sentiment and topic-based features improve next-day stock return prediction relative to a baseline built only on historical price returns?</p>
+      <p>This was an independent academic capstone, not a client engagement. No business stakeholder or production use case is implied. The goal was to rigorously test whether a specific, well-defined signal (news sentiment) adds predictive value beyond price history alone.</p>
+    </div>
+  </section>
+
+  <!-- DATA -->
+  <section class="case-section section--alt">
+    <div class="container container--narrow">
+      <h2>Data</h2>
+      <p>The dataset combines two Alpha Vantage news corpora with daily stock price data for a set of technology tickers, aggregated to a daily level per ticker:</p>
+      <ul>
+        <li><strong>Ticker-specific news:</strong> articles tagged to an individual stock, joined with next-day price data (17,325 articles with matched sentiment labels).</li>
+        <li><strong>General financial news:</strong> broader market news not tied to a specific ticker (46,896 articles with matched sentiment labels).</li>
+      </ul>
+      <p>Combined, the two corpora total more than 64,000 articles spanning news collected from January 2022 through late 2025, covering 16 technology tickers including AAPL, MSFT, NVDA, AMD, GOOGL, AMZN, META, and TSM. All data is public financial news and market data; no private, proprietary, or employer information is included.</p>
+      <p>Modeling features included lagged returns, sentiment aggregates (mean, median, count), sentiment extremes, and topic indicators, with the target defined as next-day return and careful temporal alignment to avoid data leakage.</p>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="case-section">
+    <div class="container">
+      <h2>Approach</h2>
+      <ol class="workflow-steps">
+        <li>Collect ticker-specific and general financial news with Alpha Vantage sentiment labels</li>
+        <li>Score every article with FinBERT, a transformer model fine-tuned for financial text</li>
+        <li>Cross-check FinBERT output against Alpha Vantage's own sentiment labels</li>
+        <li>Engineer lagged-return, sentiment, and topic features by ticker-day</li>
+        <li>Train and compare regression models (Linear Regression, Lasso, Decision Tree) against a price-only baseline</li>
+      </ol>
+      <p>FinBERT (<code>ProsusAI/finbert</code>) was applied to both corpora to classify each article as positive, negative, or neutral. To sanity-check this approach, FinBERT's output was compared against Alpha Vantage's own bundled sentiment labels using a normalized three-class scheme.</p>
+    </div>
+  </section>
+
+  <!-- VISUAL ANALYSIS -->
+  <section class="case-section section--alt">
+    <div class="container">
+      <h2>Visual analysis</h2>
+      <p>Charts below are generated directly from the project's own analysis output.</p>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/ai-news/sentiment-distribution.png" data-lightbox>
+          <img src="../assets/images/projects/ai-news/sentiment-distribution.png" width="1100" height="452" loading="lazy" alt="Two bar charts of FinBERT sentiment percentage by category. Ticker news: 55.3% positive, 20.7% neutral, 24.0% negative. General news: 46.4% positive, 32.1% neutral, 21.5% negative.">
+        </a>
+        <figcaption>
+          <span class="figure__title">FinBERT sentiment: ticker news vs. general news</span>
+          <p>Ticker-specific news skews more positive (55.3%) than broad market news (46.4%), which carries a larger neutral share. Company-specific coverage tends to run a more favorable tone than general market commentary.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/ai-news/sentiment-agreement-heatmap.png" data-lightbox>
+          <img src="../assets/images/projects/ai-news/sentiment-agreement-heatmap.png" width="1100" height="498" loading="lazy" alt="Row-normalized confusion heatmaps comparing Alpha Vantage sentiment labels against FinBERT labels for ticker news and general news, showing highest agreement on positive and negative extremes.">
+        </a>
+        <figcaption>
+          <span class="figure__title">FinBERT vs. Alpha Vantage sentiment agreement</span>
+          <p>The two independent sentiment methods agreed on roughly 60% of articles overall (59.9% ticker news, 60.7% general news), with the strongest agreement at the positive and negative extremes. This cross-check gives moderate confidence in the sentiment labels used downstream.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/ai-news/returns-by-sentiment.png" data-lightbox>
+          <img src="../assets/images/projects/ai-news/returns-by-sentiment.png" width="1100" height="417" loading="lazy" alt="Box plot and bar chart of next-day stock return by FinBERT sentiment label. Mean returns are -0.059% for positive, -0.083% for neutral, and -0.097% for negative articles, with heavily overlapping distributions.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Next-day return by sentiment label</span>
+          <p>Positive-sentiment articles had a slightly less negative average next-day return (-0.059%) than neutral (-0.083%) or negative (-0.097%) articles, but the return distributions overlap heavily. A one-way ANOVA found no statistically significant difference between groups (F = 0.252, p = 0.777).</p>
+        </figcaption>
+      </figure>
+
+      <figure class="figure">
+        <a class="figure__link" href="../assets/images/projects/ai-news/ticker-sentiment-ranking.png" data-lightbox>
+          <img src="../assets/images/projects/ai-news/ticker-sentiment-ranking.png" width="1000" height="797" loading="lazy" alt="Horizontal bar chart ranking technology tickers by net FinBERT sentiment. TSM, AMD, and IBM rank most positive; TSLA and AI rank most negative.">
+        </a>
+        <figcaption>
+          <span class="figure__title">Net sentiment by ticker</span>
+          <p>Net sentiment (% positive − % negative articles) varied widely by company, from strongly positive coverage of TSM and AMD to net-negative coverage of Tesla and AI, showing that news tone is highly company-specific rather than uniform across the technology sector.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Results</h2>
+      <div class="result-highlight">
+        <p><strong>Analyzed more than 64,000 financial news articles across 16 technology stocks and compared news-based and price-only models; the strongest approach reduced average prediction error by 31%.</strong></p>
+        <p>This is the project's headline evaluation result, measured on held-out data. It reflects academic model evaluation, not a deployed or production system, and it does not represent trading returns, revenue, or any real-world financial outcome.</p>
+      </div>
+      <p>The exploratory sentiment analysis adds useful context to that headline number: statistical testing (one-way ANOVA and pairwise Welch t-tests) found no significant relationship between FinBERT sentiment category and next-day return in isolation. That nuance is consistent with the Efficient Market Hypothesis: publicly available sentiment on its own was a weak standalone signal, even though the strongest full modeling approach still outperformed the price-only baseline.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS DEMONSTRATED -->
+  <section class="case-section section--alt">
+    <div class="container container--narrow">
+      <h2>Skills demonstrated</h2>
+      <ul class="skill-tags" style="display:flex;flex-wrap:wrap;">
+        <li class="skill-tag">Natural language processing (transformer-based sentiment scoring)</li>
+        <li class="skill-tag">Feature engineering</li>
+        <li class="skill-tag">Regression modeling &amp; model comparison</li>
+        <li class="skill-tag">Statistical hypothesis testing</li>
+        <li class="skill-tag">Data visualization</li>
+        <li class="skill-tag">Financial time-series analysis</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LIMITATIONS -->
+  <section class="case-section">
+    <div class="container container--narrow">
+      <h2>Limitations &amp; next steps</h2>
+      <ul>
+        <li>Sentiment signal was weak in isolation; most of the modeling gain came from combining sentiment with other engineered features rather than sentiment alone.</li>
+        <li>Alpha Vantage and FinBERT sentiment labels agreed on only about 60% of articles, indicating some measurement noise in the sentiment inputs.</li>
+        <li>Findings are specific to the technology-stock tickers and time window covered by this dataset and are not verified to generalize to other sectors or periods.</li>
+      </ul>
+      <p class="callout">
+        <span class="callout__label">Note</span>
+        Additional modeling detail (exact algorithm configurations, evaluation-metric definitions) is intentionally limited to what is verified in the supplied project files.
+      </p>
+    </div>
+  </section>
+
+  <nav class="project-nav container" aria-label="Project navigation">
+    <a class="btn btn--secondary" href="education-accountability-analytics.html">← Previous case study: Education Accountability Analytics</a>
+    <a class="btn btn--secondary" href="fraud-detection.html">Next case study: Fraud Detection →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span data-current-year>2026</span> Ishmam Kamal</p>
+    <ul class="footer-links">
+      <li><a href="mailto:ishkamal002@gmail.com">ishkamal002@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/ishmamkamal" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/IshKamal/ishmamkamal.github.io" target="_blank" rel="noopener">GitHub <span class="visually-hidden">(opens in a new tab)</span></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

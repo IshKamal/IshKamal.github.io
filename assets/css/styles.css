@@ -22,6 +22,14 @@
   --color-focus: #0f766e;
   --color-danger: #9f1d1d;
 
+  /* Filled-button teal: intentionally NOT redefined per theme below. The
+     dark-theme --color-accent is brightened for legibility as text on a
+     dark background, which fails WCAG AA as a button fill under white
+     text (~2.6:1). This pair stays constant so white button text keeps
+     a safe (~5.5:1) contrast ratio in both themes. */
+  --color-button-bg: #0f766e;
+  --color-button-bg-hover: #0b5c56;
+
   --shadow-sm: 0 1px 2px rgba(27, 36, 48, 0.06), 0 1px 1px rgba(27, 36, 48, 0.04);
   --shadow-md: 0 6px 16px rgba(27, 36, 48, 0.08), 0 2px 6px rgba(27, 36, 48, 0.05);
 
@@ -141,6 +149,14 @@ body {
 img, svg { max-width: 100%; height: auto; display: block; }
 picture { display: block; }
 
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
 h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; margin: 0 0 var(--space-3); letter-spacing: -0.01em; }
 h1 { font-size: var(--fs-xxl); }
 h2 { font-size: var(--fs-xl); }
@@ -248,11 +264,11 @@ a:focus-visible, button:focus-visible { outline-offset: 2px; }
 .btn:active { transform: translateY(0); }
 
 .btn--primary {
-  background: var(--color-accent);
+  background: var(--color-button-bg);
   color: #ffffff;
-  border-color: var(--color-accent);
+  border-color: var(--color-button-bg);
 }
-.btn--primary:hover { background: var(--color-accent-strong); border-color: var(--color-accent-strong); color: #fff; }
+.btn--primary:hover { background: var(--color-button-bg-hover); border-color: var(--color-button-bg-hover); color: #fff; }
 
 .btn--secondary {
   background: transparent;
@@ -383,7 +399,7 @@ a:focus-visible, button:focus-visible { outline-offset: 2px; }
 .hero h1 { margin-bottom: var(--space-4); }
 .hero__lede {
   font-size: var(--fs-md);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   max-width: 56ch;
 }
 .hero__meta {
@@ -395,6 +411,7 @@ a:focus-visible, button:focus-visible { outline-offset: 2px; }
   margin-bottom: var(--space-5);
 }
 .hero__meta span { display: inline-flex; align-items: center; gap: 0.4em; }
+.hero__meta .icon { color: var(--color-accent); flex-shrink: 0; }
 
 /* -------------------------------------------------------------------------
    Metric / impact strip
@@ -492,15 +509,15 @@ a:focus-visible, button:focus-visible { outline-offset: 2px; }
 }
 
 .project-card__footer { margin-top: auto; padding-top: var(--space-2); }
-.case-study-link {
+.project-link {
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
 }
-.case-study-link::after { content: "→"; transition: transform var(--motion-fast) ease; }
-.case-study-link:hover::after { transform: translateX(3px); }
+.project-link::after { content: "→"; transition: transform var(--motion-fast) ease; }
+.project-link:hover::after { transform: translateX(3px); }
 
 /* -------------------------------------------------------------------------
    Experience timeline
@@ -610,7 +627,7 @@ a:focus-visible, button:focus-visible { outline-offset: 2px; }
 .footer-links a:hover { color: var(--color-accent); }
 
 /* -------------------------------------------------------------------------
-   Project case-study pages
+   Project detail pages
    ------------------------------------------------------------------------- */
 .project-hero {
   padding-block: var(--space-7);

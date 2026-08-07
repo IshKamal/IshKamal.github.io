@@ -1,5 +1,5 @@
 /* =========================================================================
-   Ishmam Kamal — Analytics Portfolio
+   Ishmam Kamal | Analytics Portfolio
    Shared stylesheet for all pages.
    ========================================================================= */
 
@@ -165,7 +165,7 @@ hr {
 
 table { border-collapse: collapse; width: 100%; }
 
-/* Focus visibility — never suppressed */
+/* Focus visibility: never suppressed */
 :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;

@@ -1,13 +1,13 @@
 # Ishmam Kamal | Analytics Portfolio
 
-**Live site:** https://ishkamal.github.io/ishmamkamal.github.io/
-**Repository:** https://github.com/IshKamal/ishmamkamal.github.io
+**Live site:** https://ishkamal.github.io/
+**Repository:** https://github.com/IshKamal/IshKamal.github.io
 
 A static, framework-free portfolio site built to `PORTFOLIO_SPEC.md`. Plain HTML5, modern CSS, and a small dependency-free JavaScript file for progressive enhancement (mobile nav, figure lightbox). Core content and navigation work with JavaScript disabled.
 
 See [`OPEN_ITEMS.md`](OPEN_ITEMS.md) for nonblocking decisions and follow-ups recorded during the build.
 
-> **Note on the URL:** this repository is named `ishmamkamal.github.io`, which does not exactly match the account login `IshKamal`. GitHub Pages only serves a repo at the bare root domain (`https://ishkamal.github.io/`) when the repo name is *exactly* `IshKamal.github.io` (case-insensitive). Because the names differ, GitHub instead publishes this as a **project site** at `https://ishkamal.github.io/ishmamkamal.github.io/`. Every internal link in this site is relative and already works correctly at that path. If you want the bare root URL instead, rename this repository to `IshKamal.github.io` in GitHub Settings, then update the absolute URLs noted below (canonical tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, and the hardcoded link in `404.html`).
+> **Note on the URL:** this repository is named `IshKamal.github.io`, matching the account login, so GitHub Pages serves it as a **root user site** at `https://ishkamal.github.io/`. All internal links (relative) and all absolute URLs (canonical tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, the `404.html` home link) point to that root URL.
 
 ## Structure
 
@@ -42,15 +42,15 @@ npx serve .
 
 ## Publish to GitHub Pages: exact steps
 
-This repository has already been initialized, connected to `https://github.com/IshKamal/ishmamkamal.github.io.git`, and pushed to `main`. Only the GitHub Pages source setting is a manual step:
+This repository has already been initialized, connected to `https://github.com/IshKamal/IshKamal.github.io.git`, and pushed to `main`. Only the GitHub Pages source setting is a manual step:
 
 1. Go to the repo on GitHub: Settings → Pages.
 2. Under **Build and deployment → Source**, choose **Deploy from a branch**.
 3. Under **Branch**, choose `main` and folder `/ (root)`, then Save.
-4. Wait for the first deploy (usually under a minute), then open `https://ishkamal.github.io/ishmamkamal.github.io/`.
+4. Wait for the first deploy (usually under a minute), then open `https://ishkamal.github.io/`.
 5. Verify on the live URL (not just local files): every nav link, all four case-study pages (2 professional, 2 graduate), the résumé download, `404.html` on a broken path, and image loading.
 
-Canonical `<link>` tags, `og:url`/`og:image`, `sitemap.xml`, and `robots.txt` already point to the real project-site URL above. If the repository is later renamed to `IshKamal.github.io` for root hosting, update all of those to drop the `/ishmamkamal.github.io` path segment, and change the `404.html` "Back to homepage" link from `/ishmamkamal.github.io/` to `/`.
+Canonical `<link>` tags, `og:url`/`og:image`, `sitemap.xml`, and `robots.txt` already point to the root URL above.
 
 ## What to re-check after every résumé update
 

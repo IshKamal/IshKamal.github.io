@@ -11,7 +11,7 @@ Nonblocking items recorded during the build. Nothing below blocked completion of
 
 ## Resolved by publication
 
-5. **GitHub Pages URL.** Repository: `https://github.com/IshKamal/ishmamkamal.github.io`. Because the repo name (`ishmamkamal.github.io`) does not exactly match the account login (`IshKamal`), GitHub Pages serves this as a **project site** at `https://ishkamal.github.io/ishmamkamal.github.io/`, not a bare root site at `https://ishkamal.github.io/`. Canonical `<link>` tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, the footer GitHub link, and the `404.html` "Back to homepage" link all use this real project-site URL now. **If you want the bare root URL, rename the repository to `IshKamal.github.io`** (Settings → General → Repository name) and then update those same absolute URLs to drop the `/ishmamkamal.github.io` path segment (see the note in `README.md`).
+5. **GitHub Pages URL.** Repository: `https://github.com/IshKamal/IshKamal.github.io`. The repo name matches the account login (`IshKamal`), so GitHub Pages serves this as a **root user site** at `https://ishkamal.github.io/`. Canonical `<link>` tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, the footer GitHub link, and the `404.html` "Back to homepage" link all use this root URL.
 6. Canonical `<link>` tags, `sitemap.xml`, and `robots.txt`'s `Sitemap:` line are now in place, pointing at the real URL above. Person/ProfilePage structured data was still not added (spec allows, doesn't require it).
 7. The footer now links to the GitHub repository on every page.
 

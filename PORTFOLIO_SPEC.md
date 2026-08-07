@@ -671,7 +671,7 @@ Professional and graduate case-study page bodies were not rewritten to match the
 
 ### 20.7 Publication and GitHub Pages URL
 
-The site was published to `https://github.com/IshKamal/ishmamkamal.github.io`. Because that repository name does not exactly match the account login `IshKamal`, GitHub Pages serves it as a project site at `https://ishkamal.github.io/ishmamkamal.github.io/` rather than a bare root site at `https://ishkamal.github.io/`. All absolute URLs added at publication time (canonical tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`'s `Sitemap:` line, the footer GitHub link, and `404.html`'s "Back to homepage" link) use this real project-site URL. If the repository is later renamed to `IshKamal.github.io` for root hosting, those same absolute URLs need to drop the `/ishmamkamal.github.io` path segment; see `README.md` for the exact list.
+The site was published to `https://github.com/IshKamal/IshKamal.github.io`. That repository name matches the account login `IshKamal`, so GitHub Pages serves it as a root user site at `https://ishkamal.github.io/`. All absolute URLs (canonical tags, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`'s `Sitemap:` line, the footer GitHub link, and `404.html`'s "Back to homepage" link) use this root URL.
 
 A `.gitignore` excludes `/Sources/` and `/Resumes/` (raw, working, or duplicate reference material) from the published repository. Only the curated, web-ready copies already under `assets/` (images, the current résumé) are published, per Section 18's "do not commit... private data" guidance and Ishmam's explicit instruction not to publish the raw `Sources/` tree.
 

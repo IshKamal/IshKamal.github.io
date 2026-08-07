@@ -1,5 +1,5 @@
 /*
- * Ishmam Kamal — Analytics Portfolio
+ * Ishmam Kamal | Analytics Portfolio
  * Minimal, dependency-free progressive enhancement.
  * All essential navigation and content works with this file absent.
  */
